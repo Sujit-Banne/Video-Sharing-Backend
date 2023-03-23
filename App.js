@@ -1,15 +1,21 @@
 const express = require('express');
+const mongoose = require("mongoose")
 const app = express();
 app.use(express.json())
-
+const connect = require("./connection/dbConnection")
 const dotenv = require('dotenv')
 require('dotenv').config()
-const PORT = process.env.PORT || 4000
+const PORT = process.env.PORT || 5050
 
+
+
+
+//testing 
 app.use('/', (req, res) => {
     res.send('hello world')
 })
 
 app.listen(PORT, () => {
-    console.log('Server listening on port ' + PORT);
-})
+    console.log(`server is on `, PORT);
+  });
+
