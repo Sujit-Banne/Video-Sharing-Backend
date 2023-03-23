@@ -4,9 +4,10 @@ const env = require("dotenv");
 env.config();
 
 mongoose
-  .connect("mongodb+srv://DushyantBhardwaj22:dushyant@cluster0.tnwa2ux.mongodb.net/?retryWrites=true&w=majority")
+  .connect(
+    process.env.MONGODB_URL)
   .then(() => {
-    console.log("Connected to db");
+    console.log("Successfully Connected to DB.");
   })
   .catch((err) => {
     console.log(err);
