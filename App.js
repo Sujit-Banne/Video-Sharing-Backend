@@ -12,7 +12,7 @@ const PORT = process.env.PORT || 5050
 
 //testing 
 app.use('/', (req, res) => {
-    res.send('hello world')
+    res.send('hello')
 })
 
 app.listen(PORT, () => {
