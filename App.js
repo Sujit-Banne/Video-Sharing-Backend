@@ -20,7 +20,7 @@ app.use('/api/videos', express.static('media/uploads'));
 
 // routes
 app.use(require('./routes/Upload'))
-
+app.use(require('./routes/videoList'))
 //CONNECTING TO MONGODB
 mongoose.set('strictQuery', true);
 mongoose.connect(process.env.MONGO_URI)
