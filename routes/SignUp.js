@@ -30,9 +30,9 @@ router.post('/api/signup', (req, res, next) => {
                         const user = new User({
                             name: req.body.name,
                             email: req.body.email,
-                            password: hash,
                             phone: req.body.phone,
-                            profession:req.body.profession
+                            profession: req.body.profession,
+                            password: hash
                         })
                         //save the user into the database
                         user

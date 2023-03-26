@@ -8,6 +8,8 @@ const dotenv = require('dotenv')
 require('dotenv').config()
 const PORT = process.env.PORT || 4000
 
+const checkAuth = require('./middleware/checkAuth')
+
 const app = express()
 app.use(express.json())
 app.use(morgan('dev'))
@@ -19,10 +21,12 @@ app.use(bodyParser.json())
 app.use('/api/videos', express.static('media/uploads'));
 
 // routes
-app.use(require('./routes/SignIn'))
-app.use(require('./routes/SignUp'))
-app.use(require('./routes/Upload'))
-app.use(require('./routes/videoList'))
+app.use(require('./routes/Signup'))
+app.use(require('./routes/Signin'))
+app.use(checkAuth, require('./routes/Upload'))
+app.use(checkAuth, require('./routes/videoList'))
+// app.use(checkAuth, require('./routes/Myvideos'))
+
 //CONNECTING TO MONGODB
 mongoose.set('strictQuery', true);
 mongoose.connect(process.env.MONGO_URI)
