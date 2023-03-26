@@ -19,6 +19,8 @@ app.use(bodyParser.json())
 app.use('/api/videos', express.static('media/uploads'));
 
 // routes
+app.use(require('./routes/SignIn'))
+app.use(require('./routes/SignUp'))
 app.use(require('./routes/Upload'))
 app.use(require('./routes/videoList'))
 //CONNECTING TO MONGODB
