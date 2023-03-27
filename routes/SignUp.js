@@ -8,6 +8,7 @@ const User = require('../models/User')
 
 router.post('/api/signup', (req, res, next) => {
     console.log(req.body);
+    let name = User.find({ name: req.body.name })
     //check if user already exist or not
     User.find({ email: req.body.email })
         .exec()
@@ -17,7 +18,13 @@ router.post('/api/signup', (req, res, next) => {
                 return res.status(409).json({
                     message: "User already exists"
                 })
-            } else {
+            }
+            else if (name.length >= 1) {
+                return res.status(401).json({
+                    message: "User already exists"
+                })
+            }
+            else {
                 //generate new user email
                 bcrypt.hash(req.body.password, 10, (err, hash) => {
                     if (err) {
@@ -29,10 +36,11 @@ router.post('/api/signup', (req, res, next) => {
                         //create new user
                         const user = new User({
                             name: req.body.name,
+                            // lastName: req.body.lastName,
                             email: req.body.email,
                             password: hash,
                             phone: req.body.phone,
-                            profession:req.body.profession
+                            profession: req.body.profession
                         })
                         //save the user into the database
                         user
