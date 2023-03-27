@@ -30,6 +30,7 @@ router.post('/api/signin', (req, res, next) => {
                     const token = jwt.sign({
                         userId: user[0]._id,
                         name: user[0].name,
+                        // lastName: user[0].lastName,
                         email: user[0].email,
                     },
                         key,
