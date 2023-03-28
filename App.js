@@ -21,6 +21,7 @@ app.use(bodyParser.json())
 app.use('/api/videos', express.static('media/uploads'));
 
 // routes
+app.use("/api/user_upload", require('./routes/myvideo'))
 app.use(require('./routes/ExistingVideo'))
 app.use(require('./routes/Signup'))
 app.use(require('./routes/Signin'))
